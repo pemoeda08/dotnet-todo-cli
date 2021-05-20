@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TodoCli": {
+      "commandName": "Project",
+      "commandLineArgs": "clear"
+    }
+  }
+}
