@@ -4,8 +4,6 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>todo</AssemblyName>
-    <PublishSingleFile>true</PublishSingleFile>
-    <RuntimeIdentifier>win-x64;linux-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
