@@ -11,6 +11,17 @@ namespace TodoCli
 
     public class TodoApp
     {
+        private static TodoApp _defaultInstance = null;
+
+        public static TodoApp Default()
+        {
+            if (_defaultInstance == null)
+            {
+                ITodoRepository repo = new TodoFileRepository();
+                _defaultInstance = new TodoApp(repo);
+            }
+            return _defaultInstance;
+        }
 
         private readonly ITodoRepository repository;
 

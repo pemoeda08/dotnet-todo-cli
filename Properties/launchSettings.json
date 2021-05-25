@@ -1,8 +1,7 @@
 {
   "profiles": {
     "TodoCli": {
-      "commandName": "Project",
-      "commandLineArgs": "clear"
+      "commandName": "Project"
     }
   }
 }
