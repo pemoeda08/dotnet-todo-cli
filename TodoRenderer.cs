@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Spectre.Console;
 
 namespace TodoCli
 {
@@ -18,19 +19,29 @@ namespace TodoCli
 
         public void RenderTaskList()
         {
-            var list = app.GetAll().ToList();
+            var list = app.GetAll().OrderBy(t => t.DateCreated).ToList();
             if (!list.Any())
             {
                 Console.WriteLine("empty.");
                 return;
             }
 
-            Console.WriteLine(@"---- your current list ----");
+            var table = new Table();
+            table.Border = TableBorder.Square;
+            table.AddColumns(
+                new TableColumn("[green]No.[/]"), 
+                new TableColumn("[yellow]Todo[/]"), 
+                new TableColumn("[blue]Created At[/]").Centered());
+            table.Expand();
+            table.Columns[0].Width(1).NoWrap();
+            table.Columns[1].Width(15);
+            table.Columns[2].Width(3);
             for (int i = 1; i <= list.Count; i++)
             {
                 var todo = list[i - 1];
-                Console.WriteLine($"[{i}] {todo.Text} | {todo.DateCreated:dd MMM yyyy -- hh:mm}");
+                table.AddRow($"{i}", todo.Text, todo.DateCreated.ToString("dd MMM yyyy, HH:mm"));
             }
+            AnsiConsole.Render(table);
         }
     }
 }

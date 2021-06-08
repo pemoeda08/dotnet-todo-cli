@@ -33,7 +33,7 @@ namespace TodoCli.Commands
 
         public override int Execute([NotNull] CommandContext context, [NotNull] Settings settings)
         {
-            var list = todoApp.GetAll().ToList();
+            var list = todoApp.GetAll().OrderBy(t => t.DateCreated).ToList();
             int argsIndex = settings.Index;
             if (argsIndex < 1 || argsIndex > list.Count)
             {
