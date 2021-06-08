@@ -19,9 +19,10 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/TodoCli.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "--runtime", "linux-x64",
+                "--configuration", "Release",
+                "-p:PublishSingleFile=true",
+                "--output", "/usr/local/bin"
             ],
             "problemMatcher": "$msCompile"
         },

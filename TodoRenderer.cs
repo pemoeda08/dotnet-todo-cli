@@ -34,7 +34,7 @@ namespace TodoCli
                 new TableColumn("[blue]Created At[/]").Centered());
             table.Expand();
             table.Columns[0].Width(1).NoWrap();
-            table.Columns[1].Width(15);
+            table.Columns[1].Width(10);
             table.Columns[2].Width(3);
             for (int i = 1; i <= list.Count; i++)
             {
