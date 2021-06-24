@@ -21,13 +21,13 @@ namespace TodoCli.Commands
 
         public sealed class Settings : CommandSettings
         {
-            [CommandArgument(0, "[task]")]
-            public string Task { get; init; }
+            [CommandArgument(0, "[tasks]")]
+            public string[] Tasks { get; init; }
         }
 
         public override int Execute([NotNull] CommandContext context, [NotNull] Settings settings)
         {
-            var validationResult =  todoApp.Add(settings.Task);
+            var validationResult =  todoApp.Add(settings.Tasks);
             switch (validationResult)
             {
                 case TodoValidationResult.NullOrEmptyText:

@@ -19,7 +19,7 @@ namespace TodoCli
 
         public void RenderTaskList()
         {
-            var list = app.GetAll().OrderBy(t => t.DateCreated).ToList();
+            var list = app.GetAll().OrderBy(t => t.CreatedAt).ToList();
             if (!list.Any())
             {
                 Console.WriteLine("empty.");
@@ -39,7 +39,7 @@ namespace TodoCli
             for (int i = 1; i <= list.Count; i++)
             {
                 var todo = list[i - 1];
-                table.AddRow($"{i}", todo.Text, todo.DateCreated.ToString("dd MMM yyyy, HH:mm"));
+                table.AddRow($"{i}", todo.Text, todo.CreatedAt.ToString("dd MMM yyyy, HH:mm"));
             }
             AnsiConsole.Render(table);
         }
