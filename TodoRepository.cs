@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TodoCli
 {
-    public interface ITodoRepository
+    public interface ITodoRepository : IDisposable
     {
         IEnumerable<Todo> FetchAll();
         Todo Get(long todoId);
@@ -87,5 +87,8 @@ namespace TodoCli
             Save();
         }
 
+        public void Dispose()
+        {
+        }
     }
 }

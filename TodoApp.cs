@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Flurl.Http;
 
 namespace TodoCli
 {
 
-    public class TodoApp
+    public sealed class TodoApp : IDisposable
     {
         private static TodoApp _defaultInstance = null;
 
@@ -14,10 +15,7 @@ namespace TodoCli
         {
             if (_defaultInstance == null)
             {
-                var restClient = new FlurlClient(baseUrl: "http://localhost:5000/");
-                restClient.WithOAuthBearerToken(
-                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6InRlc3QiLCJleHAiOjE2MjQ1MjE3MDYsImlzcyI6IlRvZG9TZXJ2ZXIiLCJhdWQiOiJUb2RvQ2xpZW50In0.d9IpfKYCme1bkUOcR3K7SQ7IraBZh3-1IJyg_YAgycM");
-                ITodoRepository repo = new TodoApiRepository(restClient);
+                ITodoRepository repo = new TodoApiRepository();
                 _defaultInstance = new TodoApp(repo);
             }
             return _defaultInstance;
@@ -80,6 +78,10 @@ namespace TodoCli
         public void Remove(long todoId) => repository.Remove(todoId);
         public void Clear() => repository.Clear();
 
+        public void Dispose()
+        {
+            repository.Dispose();
+        }
     }
 
     public enum TodoValidationResult

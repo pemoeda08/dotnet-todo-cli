@@ -24,8 +24,9 @@ namespace TodoCli
                     .WithAlias("del");
                 app.AddCommand<ListCommand>("list");
             });
-
-            return app.Run(args);
+            int appStatus = app.Run(args);
+            TodoApp.Default().Dispose();
+            return appStatus;
         }
     }
 
