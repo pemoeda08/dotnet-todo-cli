@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Spectre.Console.Cli;
 using System.Diagnostics.CodeAnalysis;
 using TodoCli.Commands;
+using Microsoft.Extensions.Configuration;
 
 namespace TodoCli
 {

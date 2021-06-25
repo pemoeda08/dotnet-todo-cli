@@ -23,7 +23,7 @@ namespace TodoCli
 
         public TodoApiRepository()
         {
-            restClient = new FlurlClient(baseUrl: "http://localhost:5000/");
+            restClient = new FlurlClient(baseUrl: TodoAppConfig.Instance().ApiRepositoryBaseUrl);
             string apiKeyFilePath = Path.Combine(DIRECTORY_PATH, API_TOKEN_FILENAME);
             if (!File.Exists(apiKeyFilePath))
             {
